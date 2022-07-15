@@ -3,7 +3,6 @@ package dd.projects.ddshop.entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.yaml.snakeyaml.events.Event;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,12 +13,10 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AttributeValue {
+public class Subcategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private String value;
-
-    private String productAttributeId;
+    private String name;
 }

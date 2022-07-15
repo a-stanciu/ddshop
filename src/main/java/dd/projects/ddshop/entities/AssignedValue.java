@@ -3,10 +3,11 @@ package dd.projects.ddshop.entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.rest.core.annotation.RestResource;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @Getter
@@ -17,17 +18,7 @@ public class AssignedValue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToOne
-    @JoinColumn(name = "product_attribute_id")
-    @RestResource(path = "assignedValueProductAttribute", rel = "productAttributeId")
-    private ProductAttribute productAttributeId;
+    private int productAttributeId;
 
-    @OneToOne
-    @JoinColumn(name = "attribute_value_id")
-    @RestResource(path = "assignedValueAttributeValue", rel = "attributeValue")
-    private AttributeValue attributeValueId;
-
-    @ManyToMany(mappedBy = "assignedValueList")
-    private List<Variant> variantList;
-
+    private int attributeValueId;
 }

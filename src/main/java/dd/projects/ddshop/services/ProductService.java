@@ -1,7 +1,6 @@
 package dd.projects.ddshop.services;
 
 import dd.projects.ddshop.dto.ProductDTO;
-import dd.projects.ddshop.entities.Product;
 import dd.projects.ddshop.mappers.ProductMapper;
 import dd.projects.ddshop.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

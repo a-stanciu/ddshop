@@ -1,7 +1,6 @@
 package dd.projects.ddshop.mappers;
 
 import dd.projects.ddshop.dto.ProductAttributeDTO;
-import dd.projects.ddshop.entities.ProductAttribute;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

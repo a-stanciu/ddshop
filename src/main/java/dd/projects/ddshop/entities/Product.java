@@ -4,9 +4,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
@@ -21,24 +23,7 @@ public class Product {
 
     private String description;
 
-    private int price;
-
-    private int availableQuantity;
-
     private Date addedDate;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "products_categories",
-        joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id"))
-    private List<Category> categoryList;
-
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "products_attributes",
-        joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "product_attribute_id", referencedColumnName = "id"))
-    private List<ProductAttribute> productAttributeList;
-
-    @OneToMany(mappedBy = "productId")
-    private List<Variant> variantList;
+    private int subcategoryId;
 }
