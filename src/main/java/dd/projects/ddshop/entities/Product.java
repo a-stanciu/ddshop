@@ -4,11 +4,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,5 +23,10 @@ public class Product {
 
     private Date addedDate;
 
-    private int subcategoryId;
+    @ManyToOne
+    @JoinColumn(name = "subcategory_id")
+    private Subcategory subcategoryId;
+
+    @OneToMany(mappedBy = "productId")
+    private List<Variant> variantList;
 }

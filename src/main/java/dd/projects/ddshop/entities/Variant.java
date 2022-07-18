@@ -4,10 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,9 +16,21 @@ public class Variant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int productId;
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product productId;
 
     private int quantity;
 
     private int price;
+
+    @OneToMany(mappedBy = "variantId")
+    private List<CartEntry> cartEntryList;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "variant_combination",
+            joinColumns = @JoinColumn(name = "variant_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "assigned_value_id", referencedColumnName = "id"))
+    private List<AssignedValue> assignedValueList;
+
 }

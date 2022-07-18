@@ -3,12 +3,9 @@ package dd.projects.ddshop.entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.yaml.snakeyaml.events.Event;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,4 +19,7 @@ public class AttributeValue {
     private String value;
 
     private String productAttributeId;
+
+    @OneToMany(mappedBy = "attributeValueId")
+    private List<AssignedValue> assignedValueList;
 }

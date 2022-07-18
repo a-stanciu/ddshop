@@ -4,10 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,7 +16,14 @@ public class AssignedValue {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int productAttributeId;
+    @OneToOne
+    @JoinColumn(name = "product_attribute_id")
+    private ProductAttribute productAttributeId;
 
-    private int attributeValueId;
+    @ManyToOne
+    @JoinColumn(name = "attribute_value_id")
+    private AttributeValue attributeValueId;
+
+    @ManyToMany(mappedBy = "assignedValueList")
+    private List<Variant> variantList;
 }
