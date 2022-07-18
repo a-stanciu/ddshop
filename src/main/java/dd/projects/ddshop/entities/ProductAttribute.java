@@ -23,4 +23,7 @@ public class ProductAttribute {
 
     @ManyToMany(mappedBy = "productAttributeList")
     private List<Subcategory> subcategoryList;
+
+    @OneToMany(mappedBy = "productAttributeId")
+    private List<AttributeValue> attributeValueList;
 }

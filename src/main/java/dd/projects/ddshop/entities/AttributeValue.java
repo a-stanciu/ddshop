@@ -18,7 +18,9 @@ public class AttributeValue {
 
     private String value;
 
-    private String productAttributeId;
+    @ManyToOne
+    @JoinColumn(name = "product_attribute_id")
+    private ProductAttribute productAttributeId;
 
     @OneToMany(mappedBy = "attributeValueId")
     private List<AssignedValue> assignedValueList;
