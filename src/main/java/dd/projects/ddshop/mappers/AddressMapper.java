@@ -7,5 +7,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface AddressMapper {
     AddressDTO sourceToDestination(Address address);
+
     Address destinationToSource(AddressDTO addressDTO);
 }

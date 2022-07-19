@@ -7,5 +7,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface CartEntryMapper {
     CartEntryDTO sourceToDestination(CartEntry cartEntry);
+
     CartEntry destinationToSource(CartEntryDTO cartEntryDTO);
 }

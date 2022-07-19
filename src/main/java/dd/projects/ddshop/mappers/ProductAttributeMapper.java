@@ -7,5 +7,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface ProductAttributeMapper {
     ProductAttributeDTO sourceToDestination(ProductAttribute productAttribute);
+
     ProductAttribute destinationToSource(ProductAttributeDTO productAttributeDTO);
 }
