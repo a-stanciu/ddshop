@@ -3,8 +3,9 @@ package dd.projects.ddshop.mappers;
 import dd.projects.ddshop.dto.CartEntryDTO;
 import dd.projects.ddshop.entities.CartEntry;
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
 public interface CartEntryMapper {
     CartEntryDTO sourceToDestination(CartEntry cartEntry);
 
