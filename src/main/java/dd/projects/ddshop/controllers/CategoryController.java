@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/category")
+@CrossOrigin
 public class CategoryController {
     CategoryService categoryService;
 
@@ -20,12 +21,23 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addCategory(@RequestBody CategoryDTO categoryDTO) {
+    public ResponseEntity<Object> addCategory(@RequestBody CategoryDTO categoryDTO) throws Exception {
         return new ResponseEntity<>(categoryService.createCategory(categoryDTO), HttpStatus.OK);
     }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<CategoryDTO>> getCategories() {
         return new ResponseEntity<>(categoryService.getCategories(), HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Object> updateCategory(@PathVariable Integer id, @RequestBody CategoryDTO categoryDTO) throws Exception {
+        return new ResponseEntity<>(categoryService.updateCategory(id, categoryDTO), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Integer> deleteCategory(@PathVariable Integer id) {
+        categoryService.deleteCategoryById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }

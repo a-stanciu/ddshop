@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/productAttribute")
+@CrossOrigin
 public class ProductAttributeController {
     ProductAttributeService productAttributeService;
 
@@ -20,12 +21,23 @@ public class ProductAttributeController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addProductAttribute(@RequestBody ProductAttributeDTO productAttributeDTO) {
+    public ResponseEntity<Object> addProductAttribute(@RequestBody ProductAttributeDTO productAttributeDTO) throws Exception {
         return new ResponseEntity<>(productAttributeService.createProductAttribute(productAttributeDTO), HttpStatus.OK);
     }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<ProductAttributeDTO>> getProductAttributes() {
         return new ResponseEntity<>(productAttributeService.getProductAttributes(), HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Object> updateProductAttribute(@PathVariable Integer id, @RequestBody ProductAttributeDTO productAttributeDTO) throws Exception {
+        return new ResponseEntity<>(productAttributeService.updateProductAttribute(id, productAttributeDTO), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Integer> deleteProductAttribute(@PathVariable Integer id) {
+        productAttributeService.deleteProductAttributeById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }

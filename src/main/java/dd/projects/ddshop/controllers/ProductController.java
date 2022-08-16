@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/product")
+@CrossOrigin
 public class ProductController {
     ProductService productService;
 
@@ -20,12 +21,23 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addProduct(@RequestBody ProductDTO productDTO) {
+    public ResponseEntity<Object> addProduct(@RequestBody ProductDTO productDTO) throws Exception {
         return new ResponseEntity<>(productService.createProduct(productDTO), HttpStatus.OK);
     }
 
     @GetMapping("/getAll")
     public ResponseEntity<List<ProductDTO>> getProducts() {
         return new ResponseEntity<>(productService.getProducts(), HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Object> updateProduct(@PathVariable Integer id, @RequestBody ProductDTO productDTO) throws Exception {
+        return new ResponseEntity<>(productService.updateProduct(id, productDTO), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Integer> deleteProduct(@PathVariable Integer id) {
+        productService.deleteProductById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
     }
 }
