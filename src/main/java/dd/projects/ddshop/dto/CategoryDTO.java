@@ -1,5 +1,6 @@
 package dd.projects.ddshop.dto;
 
+import dd.projects.ddshop.entities.Subcategory;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,5 +11,5 @@ public class CategoryDTO {
 
     private String name;
 
-    private String description;
+    private Subcategory subcategoryId;
 }
