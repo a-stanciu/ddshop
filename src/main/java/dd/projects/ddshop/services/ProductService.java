@@ -4,6 +4,7 @@ import dd.projects.ddshop.dto.ProductDTO;
 import dd.projects.ddshop.entities.Product;
 import dd.projects.ddshop.mappers.ProductMapper;
 import dd.projects.ddshop.repositories.ProductRepository;
+import dd.projects.ddshop.validators.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,22 +14,27 @@ import java.util.List;
 public class ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
+    private final ProductValidator productValidator;
 
     @Autowired
-    public ProductService(ProductRepository productRepository, ProductMapper productMapper) {
+    public ProductService(ProductRepository productRepository, ProductMapper productMapper, ProductValidator productValidator) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
+        this.productValidator = productValidator;
     }
 
-    public Product createProduct(ProductDTO productDTO) {
+    public Product createProduct(ProductDTO productDTO) throws Exception {
+        productValidator.validate(productDTO);
         return productRepository.save(productMapper.destinationToSource(productDTO));
     }
 
-    public Product updateProduct(ProductDTO productDTO) {
+    public Product updateProduct(int id, ProductDTO productDTO) throws Exception {
+        productDTO.setId(id);
+        productValidator.validate(productDTO);
         return productRepository.save(productMapper.destinationToSource(productDTO));
     }
 
-    public void deleteAddressById(int id) {
+    public void deleteProductById(int id) {
         productRepository.deleteById(id);
     }
 
@@ -38,9 +44,5 @@ public class ProductService {
                 .stream()
                 .map(productMapper::sourceToDestination)
                 .toList();
-    }
-
-    public ProductRepository getProductRepository() {
-        return productRepository;
     }
 }

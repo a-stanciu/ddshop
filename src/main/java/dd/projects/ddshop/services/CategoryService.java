@@ -4,6 +4,7 @@ import dd.projects.ddshop.dto.CategoryDTO;
 import dd.projects.ddshop.entities.Category;
 import dd.projects.ddshop.mappers.CategoryMapper;
 import dd.projects.ddshop.repositories.CategoryRepository;
+import dd.projects.ddshop.validators.CategoryValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,18 +14,23 @@ import java.util.List;
 public class CategoryService {
     private final CategoryRepository categoryRepository;
     private final CategoryMapper categoryMapper;
+    private final CategoryValidator categoryValidator;
 
     @Autowired
-    public CategoryService(CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
+    public CategoryService(CategoryRepository categoryRepository, CategoryMapper categoryMapper, CategoryValidator categoryValidator) {
         this.categoryRepository = categoryRepository;
         this.categoryMapper = categoryMapper;
+        this.categoryValidator = categoryValidator;
     }
 
-    public Category createCategory(CategoryDTO categoryDTO) {
+    public Category createCategory(CategoryDTO categoryDTO) throws Exception {
+        categoryValidator.validate(categoryDTO);
         return categoryRepository.save(categoryMapper.destinationToSource(categoryDTO));
     }
 
-    public Category updateCategory(CategoryDTO categoryDTO) {
+    public Category updateCategory(int id, CategoryDTO categoryDTO) throws Exception {
+        categoryDTO.setId(id);
+        categoryValidator.validate(categoryDTO);
         return categoryRepository.save(categoryMapper.destinationToSource(categoryDTO));
     }
 
@@ -38,9 +44,5 @@ public class CategoryService {
                 .stream()
                 .map(categoryMapper::sourceToDestination)
                 .toList();
-    }
-
-    public CategoryRepository getCategoryRepository() {
-        return categoryRepository;
     }
 }

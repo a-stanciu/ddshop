@@ -4,6 +4,7 @@ import dd.projects.ddshop.dto.SubcategoryDTO;
 import dd.projects.ddshop.entities.Subcategory;
 import dd.projects.ddshop.mappers.SubcategoryMapper;
 import dd.projects.ddshop.repositories.SubcategoryRepository;
+import dd.projects.ddshop.validators.SubcategoryValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,18 +15,23 @@ public class SubcategoryService {
     private final SubcategoryRepository subcategoryRepository;
 
     private final SubcategoryMapper subcategoryMapper;
+    private final SubcategoryValidator subcategoryValidator;
 
     @Autowired
-    public SubcategoryService(SubcategoryRepository subcategoryRepository, SubcategoryMapper subcategoryMapper) {
+    public SubcategoryService(SubcategoryRepository subcategoryRepository, SubcategoryMapper subcategoryMapper, SubcategoryValidator subcategoryValidator) {
         this.subcategoryRepository = subcategoryRepository;
         this.subcategoryMapper = subcategoryMapper;
+        this.subcategoryValidator = subcategoryValidator;
     }
 
-    public Subcategory createSubcategory(SubcategoryDTO subcategoryDTO) {
+    public Subcategory createSubcategory(SubcategoryDTO subcategoryDTO) throws Exception {
+        subcategoryValidator.validate(subcategoryDTO);
         return subcategoryRepository.save(subcategoryMapper.destinationToSource(subcategoryDTO));
     }
 
-    public Subcategory updateSubcategory(SubcategoryDTO subcategoryDTO) {
+    public Subcategory updateSubcategory(int id, SubcategoryDTO subcategoryDTO) throws Exception {
+        subcategoryDTO.setId(id);
+        subcategoryValidator.validate(subcategoryDTO);
         return subcategoryRepository.save(subcategoryMapper.destinationToSource(subcategoryDTO));
     }
 
@@ -39,9 +45,5 @@ public class SubcategoryService {
                 .stream()
                 .map(subcategoryMapper::sourceToDestination)
                 .toList();
-    }
-
-    public SubcategoryRepository getSubcategoryRepository() {
-        return subcategoryRepository;
     }
 }

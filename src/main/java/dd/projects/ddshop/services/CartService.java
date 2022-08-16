@@ -4,6 +4,7 @@ import dd.projects.ddshop.dto.CartDTO;
 import dd.projects.ddshop.entities.Cart;
 import dd.projects.ddshop.mappers.CartMapper;
 import dd.projects.ddshop.repositories.CartRepository;
+import dd.projects.ddshop.validators.CartValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,18 +14,23 @@ import java.util.List;
 public class CartService {
     private final CartRepository cartRepository;
     private final CartMapper cartMapper;
+    private final CartValidator cartValidator;
 
     @Autowired
-    public CartService(CartRepository cartRepository, CartMapper cartMapper) {
+    public CartService(CartRepository cartRepository, CartMapper cartMapper, CartValidator cartValidator) {
         this.cartRepository = cartRepository;
         this.cartMapper = cartMapper;
+        this.cartValidator = cartValidator;
     }
 
-    public Cart createCart(CartDTO cartDTO) {
+    public Cart createCart(CartDTO cartDTO) throws Exception {
+        cartValidator.validate(cartDTO);
         return cartRepository.save(cartMapper.destinationToSource(cartDTO));
     }
 
-    public Cart updateCart(CartDTO cartDTO) {
+    public Cart updateCart(int id, CartDTO cartDTO) throws Exception {
+        cartDTO.setId(id);
+        cartValidator.validate(cartDTO);
         return cartRepository.save(cartMapper.destinationToSource(cartDTO));
     }
 
@@ -38,9 +44,5 @@ public class CartService {
                 .stream()
                 .map(cartMapper::sourceToDestination)
                 .toList();
-    }
-
-    public CartRepository getCartRepository() {
-        return cartRepository;
     }
 }

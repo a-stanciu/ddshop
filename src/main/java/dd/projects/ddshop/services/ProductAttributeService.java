@@ -4,6 +4,7 @@ import dd.projects.ddshop.dto.ProductAttributeDTO;
 import dd.projects.ddshop.entities.ProductAttribute;
 import dd.projects.ddshop.mappers.ProductAttributeMapper;
 import dd.projects.ddshop.repositories.ProductAttributeRepository;
+import dd.projects.ddshop.validators.ProductAttributeValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,18 +14,23 @@ import java.util.List;
 public class ProductAttributeService {
     private final ProductAttributeRepository productAttributeRepository;
     private final ProductAttributeMapper productAttributeMapper;
+    private final ProductAttributeValidator productAttributeValidator;
 
     @Autowired
-    public ProductAttributeService(ProductAttributeRepository productAttributeRepository, ProductAttributeMapper productAttributeMapper) {
+    public ProductAttributeService(ProductAttributeRepository productAttributeRepository, ProductAttributeMapper productAttributeMapper, ProductAttributeValidator productAttributeValidator) {
         this.productAttributeRepository = productAttributeRepository;
         this.productAttributeMapper = productAttributeMapper;
+        this.productAttributeValidator = productAttributeValidator;
     }
 
-    public ProductAttribute createProductAttribute(ProductAttributeDTO productAttributeDTO) {
+    public ProductAttribute createProductAttribute(ProductAttributeDTO productAttributeDTO) throws Exception {
+        productAttributeValidator.validate(productAttributeDTO);
         return productAttributeRepository.save(productAttributeMapper.destinationToSource(productAttributeDTO));
     }
 
-    public ProductAttribute updateProductAttribute(ProductAttributeDTO productAttributeDTO) {
+    public ProductAttribute updateProductAttribute(int id, ProductAttributeDTO productAttributeDTO) throws Exception {
+        productAttributeDTO.setId(id);
+        productAttributeValidator.validate(productAttributeDTO);
         return productAttributeRepository.save(productAttributeMapper.destinationToSource(productAttributeDTO));
     }
 
@@ -38,9 +44,5 @@ public class ProductAttributeService {
                 .stream()
                 .map(productAttributeMapper::sourceToDestination)
                 .toList();
-    }
-
-    public ProductAttributeRepository getProductAttributeRepository() {
-        return productAttributeRepository;
     }
 }
