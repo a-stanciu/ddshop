@@ -32,5 +32,4 @@ public class Variant {
             joinColumns = @JoinColumn(name = "variant_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "assigned_value_id", referencedColumnName = "id"))
     private List<AssignedValue> assignedValueList;
-
 }
