@@ -32,16 +32,18 @@ public class UserService implements UserDetailsService {
     }
 
     private String passwordHash(String password) {
-        BigInteger number = null;
+        String hash = null;
+
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md.digest(password.getBytes());
-            number = new BigInteger(1, messageDigest);
+            BigInteger number = new BigInteger(1, messageDigest);
+            hash = number.toString(16);
         } catch (NoSuchAlgorithmException exception) {
             exception.printStackTrace();
         }
 
-        return number.toString(16);
+        return hash;
     }
 
     public User createUser(UserDTO userDTO) throws Exception {
