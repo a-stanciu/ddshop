@@ -1,9 +1,11 @@
 package dd.projects.ddshop.services;
 
 import dd.projects.ddshop.dto.UserDTO;
+import dd.projects.ddshop.entities.AuthenticationRequest;
 import dd.projects.ddshop.entities.User;
 import dd.projects.ddshop.mappers.UserMapper;
 import dd.projects.ddshop.repositories.UserRepository;
+import dd.projects.ddshop.util.JwtUtil;
 import dd.projects.ddshop.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
