@@ -20,15 +20,21 @@ import java.util.List;
 
 @Service
 public class UserService implements UserDetailsService {
+
     private final UserRepository userRepository;
+
     private final UserMapper userMapper;
+
     private final UserValidator userValidator;
 
+    private final JwtUtil jwtTokenUtil;
+
     @Autowired
-    public UserService(UserRepository userRepository, UserMapper userMapper, UserValidator userValidator) {
+    public UserService(UserRepository userRepository, UserMapper userMapper, UserValidator userValidator, JwtUtil jwtTokenUtil) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.userValidator = userValidator;
+        this.jwtTokenUtil = jwtTokenUtil;
     }
 
     private String passwordHash(String password) {
@@ -82,5 +88,11 @@ public class UserService implements UserDetailsService {
         }
 
         return user;
+    }
+
+    public String authenticate(AuthenticationRequest authenticationRequest) {
+        final UserDetails userDetails = loadUserByUsername(authenticationRequest.getUsername());
+
+        return jwtTokenUtil.generateToken(userDetails);
     }
 }
