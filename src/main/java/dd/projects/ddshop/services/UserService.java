@@ -44,14 +44,14 @@ public class UserService implements UserDetailsService {
 
     public User createUser(UserDTO userDTO) throws Exception {
         userValidator.validate(userDTO);
-        //userDTO.setPassword(passwordHash(userDTO.getPassword()));
+        //userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         return userRepository.save(userMapper.destinationToSource(userDTO));
     }
 
     public User updateUser(int id, UserDTO userDTO) throws Exception {
         userDTO.setId(id);
         userValidator.validate(userDTO);
-        userDTO.setPassword(passwordHash(userDTO.getPassword()));
+        //userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         return userRepository.save(userMapper.destinationToSource(userDTO));
     }
 
