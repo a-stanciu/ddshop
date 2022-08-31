@@ -1,6 +1,7 @@
 package dd.projects.ddshop.validators;
 
 import dd.projects.ddshop.dto.UserDTO;
+import dd.projects.ddshop.exceptions.IllegalInputException;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Pattern;
@@ -14,35 +15,35 @@ public class UserValidator {
         return pattern.matcher(email).matches();
     }
 
-    public void validate(UserDTO userDTO) throws Exception {
+    public void validate(UserDTO userDTO) throws IllegalInputException {
         if (userDTO.getFirstName() == null) {
-            throw new Exception("First name cannot be null");
+            throw new IllegalInputException("First name cannot be null");
         }
 
         if (userDTO.getLastName() == null) {
-            throw new Exception("Last name cannot be null");
+            throw new IllegalInputException("Last name cannot be null");
         }
 
         if (userDTO.getEmail() == null) {
-            throw new Exception("Email cannot be null");
+            throw new IllegalInputException("Email cannot be null");
         }
 
         if (!emailValidator(userDTO.getEmail())) {
-            throw new Exception("Email is not valid");
+            throw new IllegalInputException("Email is not valid");
         }
 
         if (userDTO.getPhoneNumber() == null) {
-            throw new Exception("Phone number cannot be null");
+            throw new IllegalInputException("Phone number cannot be null");
         }
 
         try {
             Integer.parseInt(userDTO.getPhoneNumber());
         } catch (NumberFormatException e) {
-            throw new Exception("Phone number can only contain digits");
+            throw new IllegalInputException("Phone number can only contain digits");
         }
 
         if (userDTO.getPassword() == null) {
-            throw new Exception("Password cannot be null");
+            throw new IllegalInputException("Password cannot be null");
         }
     }
 }

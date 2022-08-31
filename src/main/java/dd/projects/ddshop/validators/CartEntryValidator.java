@@ -1,21 +1,22 @@
 package dd.projects.ddshop.validators;
 
 import dd.projects.ddshop.dto.CartEntryDTO;
+import dd.projects.ddshop.exceptions.IllegalInputException;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CartEntryValidator {
-    public void validate(CartEntryDTO cartEntryDTO) throws Exception {
+    public void validate(CartEntryDTO cartEntryDTO) throws IllegalInputException {
         if (cartEntryDTO.getQuantity() < 0) {
-            throw new Exception("Invalid quantity");
+            throw new IllegalInputException("Invalid quantity");
         }
 
         if (cartEntryDTO.getPricePerPiece() < 0) {
-            throw new Exception("Price per piece invalid");
+            throw new IllegalInputException("Price per piece invalid");
         }
 
         if (cartEntryDTO.getTotalPricePerEntry() < 0) {
-            throw new Exception("Total price per entry invalid");
+            throw new IllegalInputException("Total price per entry invalid");
         }
     }
 }
