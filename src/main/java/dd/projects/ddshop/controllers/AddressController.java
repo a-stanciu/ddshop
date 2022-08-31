@@ -21,7 +21,7 @@ public class AddressController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addAddress(@RequestBody AddressDTO addressDTO) throws Exception {
+    public ResponseEntity<Object> addAddress(@RequestBody AddressDTO addressDTO) {
         return new ResponseEntity<>(addressService.createAddress(addressDTO), HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class AddressController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateAddress(@PathVariable Integer id, @RequestBody AddressDTO addressDTO) throws Exception {
+    public ResponseEntity<Object> updateAddress(@PathVariable Integer id, @RequestBody AddressDTO addressDTO) {
         return new ResponseEntity<>(addressService.updateAddress(id, addressDTO), HttpStatus.OK);
     }
 

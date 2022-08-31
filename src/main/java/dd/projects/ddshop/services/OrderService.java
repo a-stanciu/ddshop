@@ -23,12 +23,12 @@ public class OrderService {
         this.orderValidator = orderValidator;
     }
 
-    public Order createOrder(OrderDTO orderDTO) throws Exception {
+    public Order createOrder(OrderDTO orderDTO) {
         orderValidator.validate(orderDTO);
         return orderRepository.save(orderMapper.destinationToSource(orderDTO));
     }
 
-    public Order updateOrder(int id, OrderDTO orderDTO) throws Exception {
+    public Order updateOrder(int id, OrderDTO orderDTO) {
         orderDTO.setId(id);
         orderValidator.validate(orderDTO);
         return orderRepository.save(orderMapper.destinationToSource(orderDTO));

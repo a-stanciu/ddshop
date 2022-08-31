@@ -23,12 +23,12 @@ public class CartEntryService {
         this.cartEntryValidator = cartEntryValidator;
     }
 
-    public CartEntry createCartEntry(CartEntryDTO cartEntryDTO) throws Exception {
+    public CartEntry createCartEntry(CartEntryDTO cartEntryDTO) {
         cartEntryValidator.validate(cartEntryDTO);
         return cartEntryRepository.save(cartEntryMapper.destinationToSource(cartEntryDTO));
     }
 
-    public CartEntry updateCartEntry(int id, CartEntryDTO cartEntryDTO) throws Exception {
+    public CartEntry updateCartEntry(int id, CartEntryDTO cartEntryDTO) {
         cartEntryDTO.setId(id);
         cartEntryValidator.validate(cartEntryDTO);
         return cartEntryRepository.save(cartEntryMapper.destinationToSource(cartEntryDTO));

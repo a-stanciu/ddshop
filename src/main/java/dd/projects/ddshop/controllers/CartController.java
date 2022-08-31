@@ -21,7 +21,7 @@ public class CartController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addCart(@RequestBody CartDTO cartDTO) throws Exception {
+    public ResponseEntity<Object> addCart(@RequestBody CartDTO cartDTO) {
         return new ResponseEntity<>(cartService.createCart(cartDTO), HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class CartController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateCart(@PathVariable Integer id, @RequestBody CartDTO cartDTO) throws Exception {
+    public ResponseEntity<Object> updateCart(@PathVariable Integer id, @RequestBody CartDTO cartDTO) {
         return new ResponseEntity<>(cartService.updateCart(id, cartDTO), HttpStatus.OK);
     }
 

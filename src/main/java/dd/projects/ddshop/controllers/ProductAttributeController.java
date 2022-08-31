@@ -21,7 +21,7 @@ public class ProductAttributeController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addProductAttribute(@RequestBody ProductAttributeDTO productAttributeDTO) throws Exception {
+    public ResponseEntity<Object> addProductAttribute(@RequestBody ProductAttributeDTO productAttributeDTO) {
         return new ResponseEntity<>(productAttributeService.createProductAttribute(productAttributeDTO), HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class ProductAttributeController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateProductAttribute(@PathVariable Integer id, @RequestBody ProductAttributeDTO productAttributeDTO) throws Exception {
+    public ResponseEntity<Object> updateProductAttribute(@PathVariable Integer id, @RequestBody ProductAttributeDTO productAttributeDTO) {
         return new ResponseEntity<>(productAttributeService.updateProductAttribute(id, productAttributeDTO), HttpStatus.OK);
     }
 

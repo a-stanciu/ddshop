@@ -23,12 +23,12 @@ public class AssignedValueService {
         this.assignedValueValidator = assignedValueValidator;
     }
 
-    public AssignedValue createAssignedValue(AssignedValueDTO assignedValueDTO) throws Exception {
+    public AssignedValue createAssignedValue(AssignedValueDTO assignedValueDTO) {
         assignedValueValidator.validate(assignedValueDTO);
         return assignedValueRepository.save(assignedValueMapper.destinationToSource(assignedValueDTO));
     }
 
-    public AssignedValue updateAssignedValue(int id, AssignedValueDTO assignedValueDTO) throws Exception {
+    public AssignedValue updateAssignedValue(int id, AssignedValueDTO assignedValueDTO) {
         assignedValueDTO.setId(id);
         assignedValueValidator.validate(assignedValueDTO);
         return assignedValueRepository.save(assignedValueMapper.destinationToSource(assignedValueDTO));

@@ -23,12 +23,12 @@ public class VariantService {
         this.variantValidator = variantValidator;
     }
 
-    public Variant createVariant(VariantDTO variantDTO) throws Exception {
+    public Variant createVariant(VariantDTO variantDTO) {
         variantValidator.validate(variantDTO);
         return variantRepository.save(variantMapper.destinationToSource(variantDTO));
     }
 
-    public Variant updateVariant(int id, VariantDTO variantDTO) throws Exception {
+    public Variant updateVariant(int id, VariantDTO variantDTO) {
         variantDTO.setId(id);
         variantValidator.validate(variantDTO);
         return variantRepository.save(variantMapper.destinationToSource(variantDTO));

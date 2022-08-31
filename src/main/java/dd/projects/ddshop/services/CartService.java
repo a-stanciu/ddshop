@@ -23,12 +23,12 @@ public class CartService {
         this.cartValidator = cartValidator;
     }
 
-    public Cart createCart(CartDTO cartDTO) throws Exception {
+    public Cart createCart(CartDTO cartDTO) {
         cartValidator.validate(cartDTO);
         return cartRepository.save(cartMapper.destinationToSource(cartDTO));
     }
 
-    public Cart updateCart(int id, CartDTO cartDTO) throws Exception {
+    public Cart updateCart(int id, CartDTO cartDTO) {
         cartDTO.setId(id);
         cartValidator.validate(cartDTO);
         return cartRepository.save(cartMapper.destinationToSource(cartDTO));

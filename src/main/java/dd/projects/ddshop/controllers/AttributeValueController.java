@@ -21,7 +21,7 @@ public class AttributeValueController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addAttributeValue(@RequestBody AttributeValueDTO attributeValueDTO) throws Exception {
+    public ResponseEntity<Object> addAttributeValue(@RequestBody AttributeValueDTO attributeValueDTO) {
         return new ResponseEntity<>(attributeValueService.createAttributeValue(attributeValueDTO), HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class AttributeValueController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateAttributeValue(@PathVariable Integer id, @RequestBody AttributeValueDTO attributeValueDTO) throws Exception {
+    public ResponseEntity<Object> updateAttributeValue(@PathVariable Integer id, @RequestBody AttributeValueDTO attributeValueDTO) {
         return new ResponseEntity<>(attributeValueService.updateAttributeValue(id, attributeValueDTO), HttpStatus.OK);
     }
 

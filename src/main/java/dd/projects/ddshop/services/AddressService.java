@@ -23,12 +23,12 @@ public class AddressService {
         this.addressValidator = addressValidator;
     }
 
-    public Address createAddress(AddressDTO addressDTO) throws Exception {
+    public Address createAddress(AddressDTO addressDTO) {
         addressValidator.validate(addressDTO);
         return addressRepository.save(addressMapper.destinationToSource(addressDTO));
     }
 
-    public Address updateAddress(int id, AddressDTO addressDTO) throws Exception {
+    public Address updateAddress(int id, AddressDTO addressDTO) {
         addressDTO.setId(id);
         addressValidator.validate(addressDTO);
         return addressRepository.save(addressMapper.destinationToSource(addressDTO));

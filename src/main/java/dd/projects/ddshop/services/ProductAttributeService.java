@@ -23,12 +23,12 @@ public class ProductAttributeService {
         this.productAttributeValidator = productAttributeValidator;
     }
 
-    public ProductAttribute createProductAttribute(ProductAttributeDTO productAttributeDTO) throws Exception {
+    public ProductAttribute createProductAttribute(ProductAttributeDTO productAttributeDTO) {
         productAttributeValidator.validate(productAttributeDTO);
         return productAttributeRepository.save(productAttributeMapper.destinationToSource(productAttributeDTO));
     }
 
-    public ProductAttribute updateProductAttribute(int id, ProductAttributeDTO productAttributeDTO) throws Exception {
+    public ProductAttribute updateProductAttribute(int id, ProductAttributeDTO productAttributeDTO) {
         productAttributeDTO.setId(id);
         productAttributeValidator.validate(productAttributeDTO);
         return productAttributeRepository.save(productAttributeMapper.destinationToSource(productAttributeDTO));

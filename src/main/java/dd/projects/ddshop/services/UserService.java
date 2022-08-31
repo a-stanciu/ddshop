@@ -52,13 +52,13 @@ public class UserService implements UserDetailsService {
         return hash;
     }
 
-    public User createUser(UserDTO userDTO) throws Exception {
+    public User createUser(UserDTO userDTO) {
         userValidator.validate(userDTO);
         //userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         return userRepository.save(userMapper.destinationToSource(userDTO));
     }
 
-    public User updateUser(int id, UserDTO userDTO) throws Exception {
+    public User updateUser(int id, UserDTO userDTO) {
         userDTO.setId(id);
         userValidator.validate(userDTO);
         //userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));

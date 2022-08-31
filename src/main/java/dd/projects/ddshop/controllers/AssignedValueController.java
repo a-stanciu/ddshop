@@ -21,7 +21,7 @@ public class AssignedValueController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addAssignedValue(@RequestBody AssignedValueDTO assignedValueDTO) throws Exception {
+    public ResponseEntity<Object> addAssignedValue(@RequestBody AssignedValueDTO assignedValueDTO) {
         return new ResponseEntity<>(assignedValueService.createAssignedValue(assignedValueDTO), HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class AssignedValueController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateAssignedValue(@PathVariable Integer id, @RequestBody AssignedValueDTO assignedValueDTO) throws Exception {
+    public ResponseEntity<Object> updateAssignedValue(@PathVariable Integer id, @RequestBody AssignedValueDTO assignedValueDTO) {
         return new ResponseEntity<>(assignedValueService.updateAssignedValue(id, assignedValueDTO), HttpStatus.OK);
     }
 

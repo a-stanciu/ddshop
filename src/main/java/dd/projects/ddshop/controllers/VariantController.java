@@ -21,7 +21,7 @@ public class VariantController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addVariant(@RequestBody VariantDTO variantDTO) throws Exception {
+    public ResponseEntity<Object> addVariant(@RequestBody VariantDTO variantDTO) {
         return new ResponseEntity<>(variantService.createVariant(variantDTO), HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class VariantController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateVariant(@PathVariable Integer id, @RequestBody VariantDTO variantDTO) throws Exception {
+    public ResponseEntity<Object> updateVariant(@PathVariable Integer id, @RequestBody VariantDTO variantDTO) {
         return new ResponseEntity<>(variantService.updateVariant(id, variantDTO), HttpStatus.OK);
     }
 

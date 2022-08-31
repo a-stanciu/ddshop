@@ -23,12 +23,12 @@ public class ProductService {
         this.productValidator = productValidator;
     }
 
-    public Product createProduct(ProductDTO productDTO) throws Exception {
+    public Product createProduct(ProductDTO productDTO) {
         productValidator.validate(productDTO);
         return productRepository.save(productMapper.destinationToSource(productDTO));
     }
 
-    public Product updateProduct(int id, ProductDTO productDTO) throws Exception {
+    public Product updateProduct(int id, ProductDTO productDTO) {
         productDTO.setId(id);
         productValidator.validate(productDTO);
         return productRepository.save(productMapper.destinationToSource(productDTO));

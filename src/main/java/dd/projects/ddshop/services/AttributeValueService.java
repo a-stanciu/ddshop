@@ -23,12 +23,12 @@ public class AttributeValueService {
         this.attributeValueValidator = attributeValueValidator;
     }
 
-    public AttributeValue createAttributeValue(AttributeValueDTO attributeValueDTO) throws Exception {
+    public AttributeValue createAttributeValue(AttributeValueDTO attributeValueDTO) {
         attributeValueValidator.validate(attributeValueDTO);
         return attributeValueRepository.save(attributeValueMapper.destinationToSource(attributeValueDTO));
     }
 
-    public AttributeValue updateAttributeValue(int id, AttributeValueDTO attributeValueDTO) throws Exception {
+    public AttributeValue updateAttributeValue(int id, AttributeValueDTO attributeValueDTO) {
         attributeValueDTO.setId(id);
         attributeValueValidator.validate(attributeValueDTO);
         return attributeValueRepository.save(attributeValueMapper.destinationToSource(attributeValueDTO));

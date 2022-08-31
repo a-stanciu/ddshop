@@ -21,7 +21,7 @@ public class CartEntryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addCartEntry(@RequestBody CartEntryDTO cartEntryDTO) throws Exception {
+    public ResponseEntity<Object> addCartEntry(@RequestBody CartEntryDTO cartEntryDTO) {
         return new ResponseEntity<>(cartEntryService.createCartEntry(cartEntryDTO), HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class CartEntryController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateCartEntry(@PathVariable Integer id, @RequestBody CartEntryDTO cartEntryDTO) throws Exception {
+    public ResponseEntity<Object> updateCartEntry(@PathVariable Integer id, @RequestBody CartEntryDTO cartEntryDTO) {
         return new ResponseEntity<>(cartEntryService.updateCartEntry(id, cartEntryDTO), HttpStatus.OK);
     }
 

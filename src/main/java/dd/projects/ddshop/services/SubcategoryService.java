@@ -24,12 +24,12 @@ public class SubcategoryService {
         this.subcategoryValidator = subcategoryValidator;
     }
 
-    public Subcategory createSubcategory(SubcategoryDTO subcategoryDTO) throws Exception {
+    public Subcategory createSubcategory(SubcategoryDTO subcategoryDTO) {
         subcategoryValidator.validate(subcategoryDTO);
         return subcategoryRepository.save(subcategoryMapper.destinationToSource(subcategoryDTO));
     }
 
-    public Subcategory updateSubcategory(int id, SubcategoryDTO subcategoryDTO) throws Exception {
+    public Subcategory updateSubcategory(int id, SubcategoryDTO subcategoryDTO) {
         subcategoryDTO.setId(id);
         subcategoryValidator.validate(subcategoryDTO);
         return subcategoryRepository.save(subcategoryMapper.destinationToSource(subcategoryDTO));

@@ -29,7 +29,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Object> addUser(@RequestBody UserDTO userDTO) throws Exception {
+    public ResponseEntity<Object> addUser(@RequestBody UserDTO userDTO) {
         return new ResponseEntity<>(userService.createUser(userDTO), HttpStatus.OK);
     }
 
@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateUser(@PathVariable Integer id, @RequestBody UserDTO userDTO) throws Exception {
+    public ResponseEntity<Object> updateUser(@PathVariable Integer id, @RequestBody UserDTO userDTO) {
         return new ResponseEntity<>(userService.updateUser(id, userDTO), HttpStatus.OK);
     }
 

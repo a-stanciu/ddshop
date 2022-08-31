@@ -23,12 +23,12 @@ public class CategoryService {
         this.categoryValidator = categoryValidator;
     }
 
-    public Category createCategory(CategoryDTO categoryDTO) throws Exception {
+    public Category createCategory(CategoryDTO categoryDTO) {
         categoryValidator.validate(categoryDTO);
         return categoryRepository.save(categoryMapper.destinationToSource(categoryDTO));
     }
 
-    public Category updateCategory(int id, CategoryDTO categoryDTO) throws Exception {
+    public Category updateCategory(int id, CategoryDTO categoryDTO) {
         categoryDTO.setId(id);
         categoryValidator.validate(categoryDTO);
         return categoryRepository.save(categoryMapper.destinationToSource(categoryDTO));

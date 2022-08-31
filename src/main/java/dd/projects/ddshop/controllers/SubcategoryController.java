@@ -21,7 +21,7 @@ public class SubcategoryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addSubcategory(@RequestBody SubcategoryDTO subcategoryDTO) throws Exception {
+    public ResponseEntity<Object> addSubcategory(@RequestBody SubcategoryDTO subcategoryDTO) {
         return new ResponseEntity<>(subcategoryService.createSubcategory(subcategoryDTO), HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class SubcategoryController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateSubcategory(@PathVariable Integer id, @RequestBody SubcategoryDTO subcategoryDTO) throws Exception {
+    public ResponseEntity<Object> updateSubcategory(@PathVariable Integer id, @RequestBody SubcategoryDTO subcategoryDTO) {
         return new ResponseEntity<>(subcategoryService.updateSubcategory(id, subcategoryDTO), HttpStatus.OK);
     }
 

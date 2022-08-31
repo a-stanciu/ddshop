@@ -21,7 +21,7 @@ public class CategoryController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addCategory(@RequestBody CategoryDTO categoryDTO) throws Exception {
+    public ResponseEntity<Object> addCategory(@RequestBody CategoryDTO categoryDTO) {
         return new ResponseEntity<>(categoryService.createCategory(categoryDTO), HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class CategoryController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateCategory(@PathVariable Integer id, @RequestBody CategoryDTO categoryDTO) throws Exception {
+    public ResponseEntity<Object> updateCategory(@PathVariable Integer id, @RequestBody CategoryDTO categoryDTO) {
         return new ResponseEntity<>(categoryService.updateCategory(id, categoryDTO), HttpStatus.OK);
     }
 

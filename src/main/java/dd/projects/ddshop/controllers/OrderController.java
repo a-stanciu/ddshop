@@ -21,7 +21,7 @@ public class OrderController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Object> addOrder(@RequestBody OrderDTO orderDTO) throws Exception {
+    public ResponseEntity<Object> addOrder(@RequestBody OrderDTO orderDTO) {
         return new ResponseEntity<>(orderService.createOrder(orderDTO), HttpStatus.OK);
     }
 
@@ -31,7 +31,7 @@ public class OrderController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<Object> updateOrder(@PathVariable Integer id, @RequestBody OrderDTO orderDTO) throws Exception {
+    public ResponseEntity<Object> updateOrder(@PathVariable Integer id, @RequestBody OrderDTO orderDTO) {
         return new ResponseEntity<>(orderService.updateOrder(id, orderDTO), HttpStatus.OK);
     }
 
