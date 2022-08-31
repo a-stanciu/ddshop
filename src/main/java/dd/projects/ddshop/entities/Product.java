@@ -23,6 +23,8 @@ public class Product {
 
     private Date addedDate;
 
+    private String pictureUri;
+
     @ManyToOne
     @JoinColumn(name = "subcategory_id")
     private Subcategory subcategoryId;

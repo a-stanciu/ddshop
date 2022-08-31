@@ -19,6 +19,8 @@ public class ProductDTO {
 
     private Date addedDate;
 
+    private String pictureUri;
+
     private Subcategory subcategoryId;
 
     private List<Variant> variantList;
