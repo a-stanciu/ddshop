@@ -38,6 +38,14 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
+    public ProductDTO getProductById(int id) {
+        return productMapper.sourceToDestination(
+                productRepository
+                        .findById(id)
+                        .orElse(null)
+        );
+    }
+
     public List<ProductDTO> getProducts() {
         return productRepository
                 .findAll()
