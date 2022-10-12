@@ -39,11 +39,25 @@ public class SubcategoryService {
         subcategoryRepository.deleteById(id);
     }
 
+    public Subcategory getSubcategoryById(int id) {
+        return subcategoryRepository
+                        .findById(id)
+                        .orElse(null);
+    }
+
     public List<SubcategoryDTO> getSubcategories() {
         return subcategoryRepository
                 .findAll()
                 .stream()
                 .map(subcategoryMapper::sourceToDestination)
                 .toList();
+    }
+
+    public int getSubcategoryId(Subcategory subcategory) {
+        return subcategory.getId();
+    }
+
+    public void deleteAllSubcategories() {
+        subcategoryRepository.deleteAll();
     }
 }

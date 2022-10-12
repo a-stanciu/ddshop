@@ -53,4 +53,8 @@ public class ProductService {
                 .map(productMapper::sourceToDestination)
                 .toList();
     }
+
+    public void deleteAllProducts() {
+        productRepository.deleteAll();
+    }
 }

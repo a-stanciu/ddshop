@@ -8,7 +8,6 @@ import dd.projects.ddshop.repositories.UserRepository;
 import dd.projects.ddshop.util.JwtUtil;
 import dd.projects.ddshop.validators.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -69,6 +68,10 @@ public class UserService implements UserDetailsService {
         userRepository.deleteById(id);
     }
 
+    public void deleteAllUsers() {
+        userRepository.deleteAll();
+    }
+
     public List<UserDTO> getUsers() {
         return userRepository
                 .findAll()
@@ -78,11 +81,11 @@ public class UserService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public User loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = null;
 
         try {
-            user = userRepository.findByEmailIs(username);
+            user = userRepository.findByEmail(username);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -91,8 +94,18 @@ public class UserService implements UserDetailsService {
     }
 
     public String authenticate(AuthenticationRequest authenticationRequest) {
-        final UserDetails userDetails = loadUserByUsername(authenticationRequest.getUsername());
+        final User userDetails = loadUserByUsername(authenticationRequest.getUsername());
 
         return jwtTokenUtil.generateToken(userDetails);
+    }
+
+    public int getUserId(User user) {
+        return user.getId();
+    }
+
+    public User getUserById(int id) {
+        return userRepository
+                .findById(id)
+                .orElse(null);
     }
 }

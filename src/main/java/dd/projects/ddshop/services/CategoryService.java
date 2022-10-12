@@ -38,11 +38,25 @@ public class CategoryService {
         categoryRepository.deleteById(id);
     }
 
+    public Category getCategoryById(int id) {
+        return categoryRepository
+                .findById(id)
+                .orElse(null);
+    }
+
     public List<CategoryDTO> getCategories() {
         return categoryRepository
                 .findAll()
                 .stream()
                 .map(categoryMapper::sourceToDestination)
                 .toList();
+    }
+
+    public int getCategoryId(Category category) {
+        return category.getId();
+    }
+
+    public void deleteAllCategories() {
+        categoryRepository.deleteAll();
     }
 }

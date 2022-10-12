@@ -38,11 +38,25 @@ public class AddressService {
         addressRepository.deleteById(id);
     }
 
+    public Address getAddressById(int id) {
+        return addressRepository
+                .findById(id)
+                .orElse(null);
+    }
+
     public List<AddressDTO> getAddresses() {
         return addressRepository
                 .findAll()
                 .stream()
                 .map(addressMapper::sourceToDestination)
                 .toList();
+    }
+
+    public int getAddressId(Address address) {
+        return address.getId();
+    }
+
+    public void deleteAllAddresses() {
+        addressRepository.deleteAll();
     }
 }
