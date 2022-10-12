@@ -1,6 +1,5 @@
 package dd.projects.ddshop.dto;
 
-import dd.projects.ddshop.entities.Subcategory;
 import dd.projects.ddshop.entities.Variant;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +20,7 @@ public class ProductDTO {
 
     private String pictureUri;
 
-    private Subcategory subcategoryId;
+    private int subcategoryId;
 
     private List<Variant> variantList;
 }

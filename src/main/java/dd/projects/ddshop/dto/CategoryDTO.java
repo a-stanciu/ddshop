@@ -4,6 +4,8 @@ import dd.projects.ddshop.entities.Subcategory;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class CategoryDTO {
@@ -11,5 +13,5 @@ public class CategoryDTO {
 
     private String name;
 
-    private Subcategory subcategoryId;
+    private List<Subcategory> subcategoryList;
 }

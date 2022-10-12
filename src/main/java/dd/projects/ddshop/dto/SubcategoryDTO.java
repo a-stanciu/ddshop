@@ -1,6 +1,5 @@
 package dd.projects.ddshop.dto;
 
-import dd.projects.ddshop.entities.Category;
 import dd.projects.ddshop.entities.Product;
 import dd.projects.ddshop.entities.ProductAttribute;
 import lombok.Getter;
@@ -17,7 +16,7 @@ public class SubcategoryDTO {
 
     private List<Product> productList;
 
-    private List<Category> categoryList;
+    private int categoryId;
 
     private List<ProductAttribute> productAttributeList;
 }
