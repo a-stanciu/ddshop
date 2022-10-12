@@ -1,5 +1,6 @@
 package dd.projects.ddshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,6 +28,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "subcategory_id")
+    @JsonBackReference
     private Subcategory subcategoryId;
 
     @OneToMany(mappedBy = "productId")

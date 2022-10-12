@@ -1,10 +1,12 @@
 package dd.projects.ddshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,7 +19,7 @@ public class Category {
 
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "subcategory_id")
-    private Subcategory subcategoryId;
+    @OneToMany(mappedBy = "categoryId")
+    @JsonManagedReference
+    private List<Subcategory> subcategoryList;
 }

@@ -3,7 +3,6 @@ package dd.projects.ddshop.entities;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -31,6 +30,8 @@ public class User implements UserDetails {
 
     private String password;
 
+    private boolean isAdmin;
+
     public User(String username, String password, Collection<? extends GrantedAuthority> authorities) {
         this.email = username;
         this.password = password;
@@ -38,12 +39,10 @@ public class User implements UserDetails {
 
     @OneToOne
     @JoinColumn(name = "default_delivery_address")
-    @RestResource(path = "userAddress", rel = "defaultDeliveryAddress")
     private Address defaultDeliveryAddress;
 
     @OneToOne
     @JoinColumn(name = "default_billing_address")
-    @RestResource(path = "userAddress", rel = "defaultBillingAddress")
     private Address defaultBillingAddress;
 
     @OneToOne(mappedBy = "userId")

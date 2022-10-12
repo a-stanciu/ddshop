@@ -1,5 +1,7 @@
 package dd.projects.ddshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,10 +21,13 @@ public class Subcategory {
     private String name;
 
     @OneToMany(mappedBy = "subcategoryId")
+    @JsonManagedReference
     private List<Product> productList;
 
-    @OneToMany(mappedBy = "subcategoryId")
-    private List<Category> categoryList;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    @JsonBackReference
+    private Category categoryId;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "subcategory_product_attribute",

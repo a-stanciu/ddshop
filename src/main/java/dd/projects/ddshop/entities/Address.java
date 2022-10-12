@@ -1,5 +1,6 @@
 package dd.projects.ddshop.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,9 +27,11 @@ public class Address {
     private String country;
 
     @OneToOne(mappedBy = "defaultDeliveryAddress")
+    @JsonIgnore
     private User userDeliveryAddress;
 
     @OneToOne(mappedBy = "defaultBillingAddress")
+    @JsonIgnore
     private User userBillingAddress;
 
     @OneToOne(mappedBy = "deliveryAddress")
@@ -36,4 +39,9 @@ public class Address {
 
     @OneToOne(mappedBy = "invoiceAddress")
     private Order invoiceAddress;
+
+    @Override
+    public String toString() {
+        return streetLine + "; " + postalCode + "; " + city + "; " + county + "; " + country;
+    }
 }
