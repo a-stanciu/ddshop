@@ -63,4 +63,10 @@ public class UserController {
                 userService.authenticate(authenticationRequest)
         ));
     }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<Object> deleteAllUsers() {
+        userService.deleteAllUsers();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
