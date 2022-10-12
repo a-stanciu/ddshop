@@ -5,8 +5,9 @@ import dd.projects.ddshop.entities.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.WARN)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface UserMapper {
+
     UserDTO sourceToDestination(User user);
 
     User destinationToSource(UserDTO userDTO);
