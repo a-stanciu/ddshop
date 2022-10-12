@@ -40,4 +40,10 @@ public class SubcategoryController {
         subcategoryService.deleteSubcategoryById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<Object> deleteAllSubcategories() {
+        subcategoryService.deleteAllSubcategories();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

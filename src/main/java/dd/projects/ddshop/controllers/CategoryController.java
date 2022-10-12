@@ -40,4 +40,10 @@ public class CategoryController {
         categoryService.deleteCategoryById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<Object> deleteAllCategories() {
+        categoryService.deleteAllCategories();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

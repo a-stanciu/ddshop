@@ -45,4 +45,10 @@ public class ProductController {
         productService.deleteProductById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<Object> deleteAllProducts() {
+        productService.deleteAllProducts();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

@@ -40,4 +40,10 @@ public class AddressController {
         addressService.deleteAddressById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
+
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<Object> deleteAllAddresses() {
+        addressService.deleteAllAddresses();
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
