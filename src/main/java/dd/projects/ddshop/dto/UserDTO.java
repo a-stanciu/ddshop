@@ -25,6 +25,8 @@ public class UserDTO {
 
     private String password;
 
+    private boolean isAdmin;
+
     private Address defaultDeliveryAddress;
 
     private Address defaultBillingAddress;
