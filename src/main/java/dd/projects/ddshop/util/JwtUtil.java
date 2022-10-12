@@ -1,5 +1,6 @@
 package dd.projects.ddshop.util;
 
+import dd.projects.ddshop.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -41,8 +42,9 @@ public class JwtUtil {
         return extractExpiration(token).before(new Date());
     }
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(User userDetails) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("admin", userDetails.isAdmin());
         return createToken(claims, userDetails.getUsername());
     }
 
